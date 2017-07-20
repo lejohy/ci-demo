@@ -27,6 +27,23 @@ app.get('/', (req, res) => {
     });
 });
 
+app.route('/feeds')
+    .get((req, res) => {
+        logger.info('/feeds called...');
+        return res.status(200).json({
+            data: '/feeds called'
+        });
+    })
+    .post((req, res) => {
+        const name = req.query.name;
+        if (!name) return res.status(400).json({
+            data: 'Bad Request'
+        });
+        return res.status(200).json({
+            data: 'hello ' + name
+        });
+    });
+
 app.get('/error', (req, res) => {
     throw new Error('Borke!');
 });
