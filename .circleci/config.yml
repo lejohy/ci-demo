@@ -20,9 +20,6 @@ jobs:
           command: npm test
       - run:
           name: code-coverage
-          command: './node_modules/.bin/nyc report --reporter=lcov'
-      - run:
-					name: zip-result
-					command: 'tar cvzf coverage.tgz ~/ci-demo/coverage'
-			- store_artifacts:
-					path: ~/ci-demo/coverage.tgz
+          command: ./node_modules/bin/nyc report --reporter=lcov && tar cvzf coverage.tgz ~/ci-demo/coverage
+      - store_artifacts:
+          path: ~/ci-demo/coverage.tgz
